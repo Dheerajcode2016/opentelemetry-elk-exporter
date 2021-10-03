@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenTelemetry.Exporter.ElasticCache", "OpenTelemetry.Exporter.ElasticCache\OpenTelemetry.Exporter.ElasticCache.csproj", "{DF240888-A5CF-4D0E-8272-EC4CFE28DAF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp.Test", "..\ConsoleApp.Test\ConsoleApp.Test.csproj", "{559EE835-3667-40F9-8D54-49E68AA81ACF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF240888-A5CF-4D0E-8272-EC4CFE28DAF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF240888-A5CF-4D0E-8272-EC4CFE28DAF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF240888-A5CF-4D0E-8272-EC4CFE28DAF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF240888-A5CF-4D0E-8272-EC4CFE28DAF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{559EE835-3667-40F9-8D54-49E68AA81ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{559EE835-3667-40F9-8D54-49E68AA81ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{559EE835-3667-40F9-8D54-49E68AA81ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{559EE835-3667-40F9-8D54-49E68AA81ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01F326D5-EC84-412E-9BF3-F6AAEA004069}
+	EndGlobalSection
+EndGlobal
