@@ -8,7 +8,7 @@ namespace OpenTelemetry.Trace
   public static class ElasticCacheExporterHelperExtensions
   {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "CA2000:Dispose objects before losing scope", Justification = "The objects should not be disposed.")]
-    public static TracerProviderBuilder AddInMemoryExporter(this TracerProviderBuilder builder, ICollection<Activity> exportedItems)
+    public static TracerProviderBuilder AddElasticCacheTraceExporter(this TracerProviderBuilder builder, ICollection<Activity> exportedItems)
     {
       if (builder == null)
       {
@@ -24,11 +24,11 @@ namespace OpenTelemetry.Trace
       {
         return deferredTracerProviderBuilder.Configure((sp, builder) =>
         {
-          builder.AddProcessor(new SimpleActivityExportProcessor(new ElasticCacheExporter<Activity>(exportedItems)));
+          builder.AddProcessor(new SimpleActivityExportProcessor(new ElasticCacheTraceExporter()));
         });
       }
 
-      return builder.AddProcessor(new SimpleActivityExportProcessor(new ElasticCacheExporter<Activity>(exportedItems)));
+      return builder.AddProcessor(new SimpleActivityExportProcessor(new ElasticCacheTraceExporter()));
     }
   }
 }
