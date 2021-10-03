@@ -1,5 +1,4 @@
-﻿using OpenTelemetry.Exporter;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 

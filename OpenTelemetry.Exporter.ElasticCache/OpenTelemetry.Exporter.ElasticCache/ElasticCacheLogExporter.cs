@@ -1,4 +1,6 @@
-﻿using OpenTelemetry.Logs;
+﻿using OpenTelemetry.Exporter.ElasticCache.Connector;
+using OpenTelemetry.Exporter.ElasticCache.Options;
+using OpenTelemetry.Logs;
 using OpenTelemetry.Resources;
 using System;
 using System.Collections.Generic;
@@ -9,14 +11,20 @@ namespace OpenTelemetry.Exporter
   {
     private const int RightPaddingLength = 30;
 
-    public ElasticCacheLogExporter()
+    private ElasticCacheConnector elasticCacheConnector { get; set; }
+
+    public ElasticCacheLogExporter(ElasticCacheExporterHttpOptions options)
     {
+      this.elasticCacheConnector = ConnectorFacotry.CreateConnectorInstance(options);
     }
 
     public override ExportResult Export(in Batch<LogRecord> batch)
     {
+
+      
       foreach (var logRecord in batch)
       {
+        this.elasticCacheConnector.Push(logRecord);
         Console.WriteLine($"{"LogRecord.TraceId:".PadRight(RightPaddingLength)}{logRecord.TraceId}");
         Console.WriteLine($"{"LogRecord.SpanId:".PadRight(RightPaddingLength)}{logRecord.SpanId}");
         Console.WriteLine($"{"LogRecord.Timestamp:".PadRight(RightPaddingLength)}{logRecord.Timestamp:yyyy-MM-ddTHH:mm:ss.fffffffZ}");
