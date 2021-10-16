@@ -7,16 +7,18 @@ namespace OpenTelemetry.Trace
 {
   public class ElasticsearchTraceExporter : BaseExporter<Activity>
   {
-    private ElasticsearchConnector elasticCacheConnector { get; set; }
+    private ElasticsearchConnector ElasticsearchConnector { get; set; }
     public ElasticsearchTraceExporter(ElasticsearchExporterHttpOptions options)
     {
-        elasticCacheConnector = ConnectorFacotry.CreateConnectorInstance(options);
+        ElasticsearchConnector = ConnectorFacotry.CreateConnectorInstance(options);
     }
     public override ExportResult Export(in Batch<Activity> batch)
     {
-        foreach (var activity in batch)
+      using var scope = SuppressInstrumentationScope.Begin();
+     
+      foreach (var activity in batch)
         {
-            this.elasticCacheConnector.Push(activity);
+            this.ElasticsearchConnector.Push(activity);
         }
 
         return ExportResult.Success;
