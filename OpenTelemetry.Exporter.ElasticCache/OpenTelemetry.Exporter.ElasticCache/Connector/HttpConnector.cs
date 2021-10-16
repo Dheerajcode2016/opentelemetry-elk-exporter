@@ -7,58 +7,58 @@ using System.Threading.Tasks;
 
 namespace OpenTelemetry.Exporter.ElasticCache.Connector
 {
-  internal class HttpConnector : ElasticCacheConnector
+  internal class HttpConnector : ElasticsearchConnector
   {
     protected ConnectionSettings Settings { get; set; }
     protected ElasticClient Client { get; set; }
 
-    internal HttpConnector(ElasticCacheExporterHttpOptions options) : base()
+    internal HttpConnector(ElasticsearchExporterHttpOptions options) : base()
     {
       this.Settings = new ConnectionSettings(options.Host).DefaultIndex(options.DefaultIndex);
     }
-
-    internal override void Push(LogRecord objectToPush)
-    {
-           Task.Run(() =>
-              {
-                  var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
-                  if (s.ServerError != null)
-                  {
-
-                  }
-              });
-        }
-
-    private LogMessage Transform(LogRecord objectToPush)
-    {
-      LogMessage message = new LogMessage();
-      if (objectToPush != null)
-      {
-        message.TraceId = objectToPush.TraceId;
-        message.SpanId = objectToPush.SpanId;
-        message.LogLevel = objectToPush.LogLevel;
-        message.TraceFlags = objectToPush.TraceFlags;
-        message.TraceState = objectToPush.TraceState;
-        message.Timestamp = objectToPush.Timestamp;
-        message.Exception = objectToPush.Exception;
-        message.CategoryName = objectToPush.CategoryName;
-        message.EventId = objectToPush.EventId;
-        if (objectToPush.FormattedMessage != null)
+    
+    #region Log_Export
+        internal override void Push(LogRecord objectToPush)
         {
-          message.Message = objectToPush.FormattedMessage;
+            Task.Run(() =>
+            {
+                var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
+            });
         }
-        if (objectToPush.State != null)
-        {
-          message.Message = objectToPush.State.ToString();
-        }
-      }
-      return message;
-    }
 
-    internal override void Push(Activity objectToPush)
-    {
-      GetClient().IndexDocumentAsync(objectToPush);
-    }
+        private LogMessage Transform(LogRecord objectToPush)
+        {
+            LogMessage message = new LogMessage();
+            if (objectToPush != null)
+            {
+                message.TraceId = objectToPush.TraceId;
+                message.SpanId = objectToPush.SpanId;
+                message.LogLevel = objectToPush.LogLevel;
+                message.TraceFlags = objectToPush.TraceFlags;
+                message.TraceState = objectToPush.TraceState;
+                message.Timestamp = objectToPush.Timestamp;
+                message.Exception = objectToPush.Exception;
+                message.CategoryName = objectToPush.CategoryName;
+                message.EventId = objectToPush.EventId;
+                if (objectToPush.FormattedMessage != null)
+                {
+                    message.Message = objectToPush.FormattedMessage;
+                }
+                if (objectToPush.State != null)
+                {
+                    message.Message = objectToPush.State.ToString();
+                }
+            }
+            return message;
+        }
+        #endregion
+
+    #region Trace_Export
+        internal override void Push(Activity objectToPush)
+        {
+            GetClient().IndexDocumentAsync(objectToPush);
+        }
+        #endregion
 
     private ElasticClient GetClient()
     {

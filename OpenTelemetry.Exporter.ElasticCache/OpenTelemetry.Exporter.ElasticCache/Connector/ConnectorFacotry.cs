@@ -6,15 +6,15 @@ namespace OpenTelemetry.Exporter.ElasticCache.Connector
 {
   internal static class ConnectorFacotry
   {
-    internal static ConcurrentDictionary<Type, ElasticCacheConnector> ConnectorDictionary { get; set; }
+    internal static ConcurrentDictionary<Type, ElasticsearchConnector> ConnectorDictionary { get; set; }
 
-    internal static ElasticCacheConnector CreateConnectorInstance(ElasticCacheExporterHttpOptions httpOptions)
+    internal static ElasticsearchConnector CreateConnectorInstance(ElasticsearchExporterHttpOptions httpOptions)
     {
       if (ConnectorDictionary== null)
       {
-        ConnectorDictionary = new ConcurrentDictionary<Type, ElasticCacheConnector>();
-          
+        ConnectorDictionary = new ConcurrentDictionary<Type, ElasticsearchConnector>();
       }
+
       return ConnectorDictionary.GetOrAdd(httpOptions.GetType(), new HttpConnector(httpOptions));
     }
   }
