@@ -1,7 +1,9 @@
 ﻿using Nest;
 using OpenTelemetry.Exporter.ElasticCache.Options;
+using OpenTelemetry.Exporter.Elasticsearch.Models;
 using OpenTelemetry.Logs;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace OpenTelemetry.Exporter.ElasticCache.Connector
 {
@@ -17,7 +19,40 @@ namespace OpenTelemetry.Exporter.ElasticCache.Connector
 
     internal override void Push(LogRecord objectToPush)
     {
-      var r = GetClient().IndexDocumentAsync(objectToPush).Result;
+           Task.Run(() =>
+              {
+                  var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
+                  if (s.ServerError != null)
+                  {
+
+                  }
+              });
+        }
+
+    private LogMessage Transform(LogRecord objectToPush)
+    {
+      LogMessage message = new LogMessage();
+      if (objectToPush != null)
+      {
+        message.TraceId = objectToPush.TraceId;
+        message.SpanId = objectToPush.SpanId;
+        message.LogLevel = objectToPush.LogLevel;
+        message.TraceFlags = objectToPush.TraceFlags;
+        message.TraceState = objectToPush.TraceState;
+        message.Timestamp = objectToPush.Timestamp;
+        message.Exception = objectToPush.Exception;
+        message.CategoryName = objectToPush.CategoryName;
+        message.EventId = objectToPush.EventId;
+        if (objectToPush.FormattedMessage != null)
+        {
+          message.Message = objectToPush.FormattedMessage;
+        }
+        if (objectToPush.State != null)
+        {
+          message.Message = objectToPush.State.ToString();
+        }
+      }
+      return message;
     }
 
     internal override void Push(Activity objectToPush)
