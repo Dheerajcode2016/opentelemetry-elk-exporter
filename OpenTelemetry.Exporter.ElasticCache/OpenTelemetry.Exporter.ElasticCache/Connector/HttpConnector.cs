@@ -1,11 +1,11 @@
 ﻿using Nest;
-using OpenTelemetry.Exporter.ElasticCache.Options;
-using OpenTelemetry.Exporter.Elasticsearch.Models;
+using OTel.Exporter.Elasticsearch.Options;
+using OTel.Exporter.Elasticsearch.Models;
 using OpenTelemetry.Logs;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace OpenTelemetry.Exporter.ElasticCache.Connector
+namespace OTel.Exporter.Elasticsearch.Connector
 {
   internal class HttpConnector : ElasticsearchConnector
   {

@@ -1,7 +1,7 @@
 ﻿using OpenTelemetry.Logs;
 using System.Diagnostics;
 
-namespace OpenTelemetry.Exporter.ElasticCache.Connector
+namespace OTel.Exporter.Elasticsearch.Connector
 {
   internal abstract class ElasticsearchConnector
   {

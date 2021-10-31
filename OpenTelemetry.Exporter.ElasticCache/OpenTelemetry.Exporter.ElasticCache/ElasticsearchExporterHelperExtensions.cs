@@ -1,4 +1,4 @@
-﻿using OpenTelemetry.Exporter.ElasticCache.Options;
+﻿using OTel.Exporter.Elasticsearch.Options;
 using System;
 
 namespace OpenTelemetry.Trace

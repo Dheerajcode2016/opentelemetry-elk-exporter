@@ -1,5 +1,5 @@
 ﻿using OpenTelemetry.Exporter;
-using OpenTelemetry.Exporter.ElasticCache.Options;
+using OTel.Exporter.Elasticsearch.Options;
 using System;
 
 namespace OpenTelemetry.Logs

@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	<EnablePackageValidation>true</EnablePackageValidation>
+	<PackageId>OTel.Exporter.Elasticsearch.Http</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>Dheeraj Kumar</Authors>
+	<Company>CalDro - Calender Droid</Company>
+	<IsPublishable>false</IsPublishable>
+	<RollForward>LatestMinor</RollForward>
+	<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	<Description>OpenTelemetry Exporter for Elasticsearch supporting Http
+Supports 
+- Logs
+- Traces</Description>
+	<NeutralLanguage>en-IN</NeutralLanguage>
+	<RepositoryType>git</RepositoryType>
+	<Copyright>Copyright (c) Dheeraj 2020</Copyright>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<RepositoryUrl>https://github.com/Dheerajcode2016/opentelemetry-elk-exporter</RepositoryUrl>
+	<PackageTags>opentelemetry, elasticsearch,ELK, logger,logs,log,kibana</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NEST" Version="7.15.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="bb8.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

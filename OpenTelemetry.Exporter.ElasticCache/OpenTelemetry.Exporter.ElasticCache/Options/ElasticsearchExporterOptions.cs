@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace OpenTelemetry.Exporter.ElasticCache.Options
+namespace OTel.Exporter.Elasticsearch.Options
 {
   public class ElasticsearchExporterHttpOptions
   {

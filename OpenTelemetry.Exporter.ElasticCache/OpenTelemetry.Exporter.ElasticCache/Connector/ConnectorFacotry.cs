@@ -1,8 +1,8 @@
-﻿using OpenTelemetry.Exporter.ElasticCache.Options;
+﻿using OTel.Exporter.Elasticsearch.Options;
 using System;
 using System.Collections.Concurrent;
 
-namespace OpenTelemetry.Exporter.ElasticCache.Connector
+namespace OTel.Exporter.Elasticsearch.Connector
 {
   internal static class ConnectorFacotry
   {

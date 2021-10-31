@@ -1,5 +1,5 @@
-﻿using OpenTelemetry.Exporter.ElasticCache.Connector;
-using OpenTelemetry.Exporter.ElasticCache.Options;
+﻿using OTel.Exporter.Elasticsearch.Connector;
+using OTel.Exporter.Elasticsearch.Options;
 
 using System.Diagnostics;
 
