@@ -65,7 +65,7 @@ jobs:
     - run: |
         ls
     - run: |
-        dotnet build ./OpenTelemetry.Exporter.ElasticCache/OpenTelemetry.Exporter.ElasticCache.sln
+        dotnet build ./OpenTelemetry.Exporter.ElasticCache/OpenTelemetry.Exporter.ElasticCache/OTel.Exporter.Elasticsearch.csproj
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
