@@ -39,7 +39,7 @@ Supports
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Include="..\..\bb8.png">
+    <None Include=".\bb8.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
