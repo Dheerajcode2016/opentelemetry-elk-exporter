@@ -1,0 +1,74 @@
+version: '3.4'
+
+services:
+  elasticsearch01:
+      image: bitnami/elasticsearch:latest
+      container_name: otel-elasticsearch01
+      environment: 
+        - node.name=elasticsearch01
+        - cluster.name=otel-es-docker-cluster
+        - discovery.seed_host=elasticsearch02
+        - cluster.initial_master_nodes=elasticsearch01,elasticsearch02
+        - bootsrap.memory_lock=true
+        - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      ulimits: 
+        memlock:
+          soft: -1
+          hard: -1
+      volumes: 
+        - otel-es-vol-01:/usr/share/elasticsearch/data
+      ports: 
+        - 9200:9200
+      networks: 
+        - otel-dotnet-poc
+
+  elasticsearch02:
+    image: bitnami/elasticsearch:latest
+    container_name: otel-elasticsearch02
+    environment: 
+      - node.name=elasticsearch02
+      - cluster.name=otel-es-docker-cluster
+      - discovery.seed_hosts=elasticsearch01
+      - cluster.initial_master_nodes=elasticsearch01,elasticsearch02
+      - bootsrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits: 
+      memlock:
+        soft: -1
+        hard: -1
+    volumes: 
+      - otel-es-vol-02:/usr/share/elasticsearch/data
+    networks: 
+      - otel-dotnet-poc
+  
+  kibana:
+    image: bitnami/kibana
+    container_name: otel-kibana
+    depends_on: 
+      - elasticsearch01
+      - elasticsearch02
+    ports: 
+      - 5601:5601
+    environment: 
+      ELASTICSEARCH_URL: http://elasticsearch01:9200
+      ELASTICSEARCH_HOSTS: '["http://elasticsearch01:9200","http://elasticsearch02:9200"]'
+    networks: 
+      - otel-dotnet-poc
+  #consoleapp.test:
+  #  image: consoleapptest
+  #  depends_on:
+  #    - kibana
+  #    - elasticsearch01
+  #    - elasticsearch02
+  #  build:
+  #    context: .
+  #    dockerfile: ConsoleApp.Test/Dockerfile
+
+volumes: 
+  otel-es-vol-01:
+    driver: local
+  otel-es-vol-02:
+    driver: local  
+
+networks: 
+  otel-dotnet-poc :
