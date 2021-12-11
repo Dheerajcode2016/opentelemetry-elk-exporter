@@ -35,3 +35,5 @@ docker*.*
 .vs/
 .docker/*
 CodeMaid.config
+/.dockerignore
+/OpenTelemetry.Exporter.ElasticCache.sln
