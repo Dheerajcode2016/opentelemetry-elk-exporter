@@ -5,7 +5,7 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	<EnablePackageValidation>true</EnablePackageValidation>
 	<PackageId>OTel.Exporter.Elasticsearch.Http</PackageId>
-	<Version>1.0.0</Version>
+	<Version>2.0.0</Version>
 	<Authors>Dheeraj Kumar</Authors>
 	<Company>CalDro - Calender Droid</Company>
 	<IsPublishable>false</IsPublishable>
@@ -24,13 +24,14 @@ Supports
 	<PackageTags>opentelemetry, elasticsearch,ELK, logger,logs,log,kibana</PackageTags>
 	<PackageIcon>bb8.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageReleaseNotes>Upgraded to .NET 6, Added retry logic to push message to Elasticsearch</PackageReleaseNotes>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net5.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net5.0|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net6.0|AnyCPU'">
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
