@@ -30,15 +30,10 @@ namespace OTel.Exporter.Elasticsearch.Connector
 
     internal override void Push(LogRecord objectToPush)
     {
-      //var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
-      //Console.WriteLine("Going to push");
       Task.Run(() =>
       {
-        //var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
-        //Console.WriteLine(s.Result.ToString());
         Retry.Do(() =>
         {
-          //Console.WriteLine("Going to push");
           var s = GetClient().IndexDocumentAsync(Transform(objectToPush)).Result;
         }, WaitBeforeRetry, TotalRetry);
       }).ConfigureAwait(false);
