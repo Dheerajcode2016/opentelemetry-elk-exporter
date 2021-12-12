@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net5.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	<EnablePackageValidation>true</EnablePackageValidation>
 	<PackageId>OTel.Exporter.Elasticsearch.Http</PackageId>
@@ -46,7 +46,7 @@ Supports
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NEST" Version="7.15.0" />
+    <PackageReference Include="NEST" Version="7.16.0" />
     <PackageReference Include="OpenTelemetry" Version="1.1.0" />
   </ItemGroup>
 

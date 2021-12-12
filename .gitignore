@@ -27,6 +27,9 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+ConsoleApp.Test/
+Docker/
+docker*.*
 
 # Visual Studio 2019
 .vs/
@@ -36,3 +39,4 @@ ConsoleApp.Test/
 Docker/
 *.dockerignore
 docker-*.*
+
