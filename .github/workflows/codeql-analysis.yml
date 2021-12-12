@@ -67,7 +67,7 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
     - run: |
-        ls
+        dotnet clean ./OpenTelemetry.Exporter.ElasticCache/OpenTelemetry.Exporter.ElasticCache/OTel.Exporter.Elasticsearch.csproj
     - run: |
         dotnet build ./OpenTelemetry.Exporter.ElasticCache/OpenTelemetry.Exporter.ElasticCache/OTel.Exporter.Elasticsearch.csproj
 
