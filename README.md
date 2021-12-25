@@ -12,12 +12,13 @@ How to use?
                 .AddElasticsearchExporter(new ElasticsearchExporterHttpOptions("telemetry", "http://localhost:9200"))
             );
         });
-
-        "telemetry":  this is index name in Elasticsearch for which data will be pushed
-        "http://localhost:9200": This is url of Elasticsearch server.
 ```
+   "telemetry":  this is index name in Elasticsearch for which data will be pushed
+   
+   "http://localhost:9200": This is url of Elasticsearch server.
+
    Example:
-```Charp
+```Csharp
 
         internal class Program
           {
