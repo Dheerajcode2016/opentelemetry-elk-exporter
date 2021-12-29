@@ -3,20 +3,23 @@ Open Telemetry Exporter for Elasticsearch using http protocol.
 
 How to use?
 
-	1. Install OTel.Exporter.Elasticsearch.Http package using Nuget Package Manager in .NET 5.0 above project
-	2. add Below code in programe.cs or startup.cs 
-	
+1. Install OTel.Exporter.Elasticsearch.Http package using Nuget Package Manager in .NET 5.0 above project
+2. add Below code in programe.cs or startup.cs 
+```Csharp	
 	using var loggerFactory = LoggerFactory.Create(builder =>
         {
             builder.AddOpenTelemetry(options => options
                 .AddElasticsearchExporter(new ElasticsearchExporterHttpOptions("telemetry", "http://localhost:9200"))
             );
         });
+```
+   "telemetry":  this is index name in Elasticsearch for which data will be pushed
+   
+   "http://localhost:9200": This is url of Elasticsearch server.
 
-        "telemetry":  this is index name in Elasticsearch for which data will be pushed
-        "http://localhost:9200": This is url of Elasticsearch server.
+   Example:
+```Csharp
 
-    Example:
         internal class Program
           {
             private static ActivitySource activitySource = new ActivitySource("OTel.POC.Web", "ASP.NET Core 5.0");
@@ -55,3 +58,4 @@ How to use?
               Console.ReadLine();
             }
           }
+```
